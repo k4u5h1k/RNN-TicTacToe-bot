@@ -1,4 +1,4 @@
-# Rnn-game-bot
+# RNN-TicTacToe-bot
 A tictactoe playing bot trained on LSTM.
 
 # Usage
