@@ -77,7 +77,6 @@ class TicTacToeBoard(_TTTB, Node):
             + "\n"
         )
 
-
 def play_game():
     global data
     tree = MCTS()
@@ -86,7 +85,7 @@ def play_game():
         for _ in range(100):
             tree.do_rollout(board)
         new_board = tree.choose(board)
-        if not new_board.rand:
+        if (not new_board.rand):
             state = list(map(lambda x: '0' if x is None else '1' if x else '-1', 
                     board.tup))
             data['State'].append(state)
@@ -102,15 +101,13 @@ def play_game():
         if board.terminal:
             break
 
-
 def _winning_combos():
-    for start in range(0, 9, 3):  # three in a row
+    for start in range(0, 9, 3):
         yield (start, start + 1, start + 2)
-    for start in range(3):  # three in a column
+    for start in range(3):
         yield (start, start + 3, start + 6)
-    yield (0, 4, 8)  # down-right diagonal
-    yield (2, 4, 6)  # down-left diagonal
-
+    yield (0, 4, 8)
+    yield (2, 4, 6)
 
 def _find_winner(tup):
     "Returns None if no winner, True if X wins, False if O wins"
@@ -122,14 +119,13 @@ def _find_winner(tup):
             return True
     return None
 
-
 def new_tic_tac_toe_board():
     return TicTacToeBoard(tup=(None,) * 9, turn=True, winner=None, terminal=False, rand=False)
 
 
 if __name__ == "__main__":
     data = {'State':[], 'Turn':[], 'Action':[]}
-    for _ in range(300):
+    for _ in range(500):
         play_game()
     with open('dataset.json','w+') as handle:
         json.dump(data, handle, indent=2)
