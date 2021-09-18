@@ -125,7 +125,7 @@ def new_tic_tac_toe_board():
 
 if __name__ == "__main__":
     data = {'State':[], 'Turn':[], 'Action':[]}
-    for _ in range(500):
+    for _ in range(600):
         play_game()
     with open('dataset.json','w+') as handle:
         json.dump(data, handle, indent=2)
